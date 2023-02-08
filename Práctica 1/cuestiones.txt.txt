@@ -1,0 +1,13 @@
+Apartado 3: Uso de librerías básicas
+
+Ejecuta el programa con distintos tipos de parámetros (numéricos o no, negativos, etc.), sin parámetros, o con más de uno. ¿Qué sucede? ¿Ves algún problema o mejora a implementar en el código?
+Si ejecutamos el código con “java SecuenciaPadovan.java 0 4 7” como se dice obtendremos las salidas esperadas para 4 y 7 con sus respectivos resultados y el 0 con longitud incorrecta.
+Ahora, si es ejecutado sin argumentos solo se imprimirán los resultados de true y false de las cadenas de comprobación de esPadovan() al final de la ejecución. Si se ejecuta con números muy grandes como el 123, hay un momento, específicamente 1, 1, 1, …, 1380359512, 1828587033, -1872605217, -1086020751, -44018184, …, …. Que como se puede observar se pasa de números positivos a negativos, esto sucede porque se sobrepasa el tamaño máximo de integer y empieza desde el valor más bajo de integer dando toda la vuelta. Esto se podría solucionar utilizando longinteger o double haciendo que tuvieran mayor rango, aunque también existe la posibilidad de llegar al final de estos.
+Si se introduce algún carácter no numérico simplemente se imprimirá un error de que el tipo de input no era el adecuado.
+Si se introduce un número negativo dirá que la longitud es incorrecta, ya que como esta definido en el código “if (len<3)” se imprimirá. Esto se podría corregir haciendo que se usará el valor absoluto, aunque tampoco sería una solución real.
+En general, las mejoras que haría sería cambiar de integer a double los datos con los que se trabajan y usar la comprobación esPadovan() con las longitudes introducidas y como parte del código para que se pudiera usar solo ejecutando el programa o teniendo que cambiar el código desde dentro.
+
+
+Apartado 4: Tu primer programa Java
+
+El método esSecuencia es un método de objeto. Esto se debe a que este método se encarga de evaluar una lista dada y compararla con la secuencia almacenada en el objeto en cuestión. La lógica detrás de la comparación es específica para el objeto que invoca el método, por lo que es necesario que sea un método de objeto. De esta manera, el método puede acceder a los atributos y a la secuencia almacenada en el objeto que lo invoca.
