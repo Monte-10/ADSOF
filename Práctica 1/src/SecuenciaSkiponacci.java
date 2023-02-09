@@ -1,9 +1,24 @@
+/**
+ * Esta aplicación genera una secuencia de Skiponacci, que elige entre Padovan, Perrin o Fibonacci.
+ * 
+ * @author: Álvaro Mendez y Alejandro Monterrubio // alvaro.mendezl@estudiante.uam.es alejandro.monterrubio@estudiante.uam.es
+*/
+
 import java.util.*;
 
 public class SecuenciaSkiponacci {
     private List<Integer> secuencia;
     private int pos1, pos2;
 
+    /**
+     * Constructor de la clase SecuenciaSkiponacci.
+     * Crea una secuencia de Skiponacci a partir de dos posiciones y una secuencia inicial.
+     * 
+     * @param pos1 Posiciones que se deben restar del primer elemento a sumar.
+     * @param pos2 Posición que se deben restar del segundo elemento a sumar.
+     * @param tipo Tipo de secuencia a generar.
+     * @param longitud Longitud de la secuencia a generar.
+     */
     public SecuenciaSkiponacci(int pos1, int pos2, List<Integer> tipo, int longitud) {
         this.pos1 = pos1;
         this.pos2 = pos2;
@@ -13,11 +28,23 @@ public class SecuenciaSkiponacci {
         this.next();
     }
 
+    /**
+     * Método toString de la clase SecuenciaSkiponacci.
+     * Devuelve la secuencia en forma de String.
+     * 
+     * @return String con la secuencia.
+     */
     @Override
     public String toString() {
         return this.secuencia.toString();
     }
 
+    /**
+     * Método next de la clase SecuenciaSkiponacci.
+     * Devuelve el siguiente elemento de la secuencia.
+     * 
+     * @return Siguiente elemento de la secuencia.
+     */
     public int next() {
         int numElementos = this.secuencia.size();
         int proxElemento = this.secuencia.get(numElementos-this.pos1)+this.secuencia.get(numElementos-this.pos2);
@@ -25,6 +52,13 @@ public class SecuenciaSkiponacci {
         return proxElemento;
     }
 
+    /**
+     * Método esSecuencia de la clase SecuenciaSkiponacci.
+     * Comprueba si una secuencia es correcta.
+     * 
+     * @param sec Secuencia a comprobar.
+     * @return true si la secuencia es correcta, false en caso contrario.
+     */
     public boolean esSecuencia(List<Integer> sec) {
         int tamano = sec.size();
         List<Integer> tipo;
@@ -37,6 +71,12 @@ public class SecuenciaSkiponacci {
         SecuenciaSkiponacci sp = new SecuenciaSkiponacci(this.pos1, this.pos2, tipo, tamano);
         return sp.secuencia.equals(sec);
     }
+    /**
+     * Método main para probar la clase.
+     * Este método crea la secuencia de Padovan, Perrin y Fibonacci, y comprueba que la secuencia es correcta.
+     * 
+     * @param args Argumentos de la línea de comandos.
+     */
     public static void main (String ...args) {
         SecuenciaSkiponacci padovan = new SecuenciaSkiponacci(2, 3, List.of(1, 1, 1), 10);
         SecuenciaSkiponacci perrin = new SecuenciaSkiponacci(2, 3, List.of(3, 0, 2), 10);
