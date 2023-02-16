@@ -20,4 +20,3 @@ public abstract class Embarcacion {
 		return Embarcacion.COSTE_BASE+this.dimensiones+this.capacidad;
 	}
 }
-
