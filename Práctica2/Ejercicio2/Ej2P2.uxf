@@ -1,0 +1,156 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>333</y><w>288</w><h>144</h></coordinates><panel_attributes>Promotor
+--
+-nombreCompleto: String
+-porcentajeComision: float
+--
++añadirConcierto(n: String, l: String, f: Date, n: int): void
++modificaConcierto(c: Concierto): void
++eliminaCoincierto(c: Concierto): void
++modificaEntradas(c: Concierto): void
++modificaActuaciones(c: Concierto): void
++modificaLocalizacion(c: Concierto): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>729</x><y>153</y><w>297</w><h>135</h></coordinates><panel_attributes>Concierto
+--
+-nombre: String
+-fecha: Date
+-actuaciones: List&lt;Actuacion&gt;
+-duracion: Time
+-localizacion: Localizacion
+-aforo: int
+-listaEntradas: List&lt;Entrada&gt;
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>756</x><y>351</y><w>189</w><h>63</h></coordinates><panel_attributes>Actuacion
+--
+-duracion: Time</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>198</x><y>162</y><w>189</w><h>63</h></coordinates><panel_attributes>UsuarioRegistrado
+--
+-nombre: String
+-clave: String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>324</x><y>333</y><w>252</w><h>72</h></coordinates><panel_attributes>Cliente
+--
+-fechaAlta: Date
+-historialEntradas: List&lt;Entrada&gt;
+--
++comprarEntrada(c: Concierto, e: Entrada): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>216</y><w>27</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>135</x><y>297</y><w>333</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;350;10</additional_attributes></element><element><id>Relation</id><coordinates><x>135</x><y>297</y><w>27</w><h>54</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>441</x><y>297</y><w>27</w><h>54</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>99</y><w>297</w><h>81</h></coordinates><panel_attributes>Aplicacion
+--
+
+--
++obtenerEntradasVendidas(c: Concierto): List&lt;Entradas&gt;
++obtenerEntradasFechas(d: Date, f: Date): List&lt;Entradas&gt;
++obtenerEntradasCliente(c: Cliente): List&lt;Entradas&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>126</y><w>144</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=1..* Usuarios</panel_attributes><additional_attributes>140;10;10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>702</x><y>90</y><w>270</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=0..* Conciertos</panel_attributes><additional_attributes>10;50;70;50;70;10;200;10;200;70</additional_attributes></element><element><id>Relation</id><coordinates><x>846</x><y>279</y><w>108</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=1..* Actuaciones</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>756</x><y>495</y><w>189</w><h>90</h></coordinates><panel_attributes>ArtistaIndividual
+--
+-nombreArtistico: String
+-generoMusical: String
+-nombreReal: String
+-fechaNacimiento: Date
+-nacionalidad: String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>342</x><y>495</y><w>189</w><h>63</h></coordinates><panel_attributes>GrupoMusical
+--
+-artistas: List&lt;Artista&gt;
+-lider: String
+-fechaCreacion: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>513</y><w>252</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
+m2= 2..* Artistas
+</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>459</y><w>288</w><h>54</h></coordinates><panel_attributes>lt=&lt;-
+m1= 1..* +roles </panel_attributes><additional_attributes>10;40;10;10;300;10;300;40</additional_attributes></element><element><id>Relation</id><coordinates><x>846</x><y>405</y><w>108</w><h>108</h></coordinates><panel_attributes>lt=&lt;-
+m1= 1..* Actuaciones
+m2= Artista</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>423</x><y>369</y><w>351</w><h>144</h></coordinates><panel_attributes>lt=&lt;-
+r1= 1..* Actuaciones
+m2= Grupo</panel_attributes><additional_attributes>370;20;230;20;230;70;10;70;10;140</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1215</x><y>153</y><w>189</w><h>72</h></coordinates><panel_attributes>Localizacion
+--
+-direccion: String
+-aforo: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1395</x><y>180</y><w>126</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1494</x><y>90</y><w>45</w><h>207</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>30;10;10;10;10;210;30;210</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>63</y><w>189</w><h>63</h></coordinates><panel_attributes>Sala
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>243</y><w>189</w><h>63</h></coordinates><panel_attributes>Estadio
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1017</x><y>783</y><w>198</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Abstract Class&gt;&gt;
+Entrada
+--
+-precioBase: float
+-zona: Zona
+--
++calculaPrecio(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1215</x><y>486</y><w>189</w><h>63</h></coordinates><panel_attributes>Zona
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1395</x><y>513</y><w>126</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1494</x><y>423</y><w>45</w><h>207</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>30;10;10;10;10;210;30;210</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>396</y><w>189</w><h>63</h></coordinates><panel_attributes>Pista
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>576</y><w>189</w><h>63</h></coordinates><panel_attributes>Palco
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1206</x><y>819</y><w>72</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>702</y><w>189</w><h>63</h></coordinates><panel_attributes>LowCost
+--
+-descuento: int
+--
++calculaPrecio(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>918</y><w>189</w><h>63</h></coordinates><panel_attributes>Grupales
+--
+-descuento: int
+--
++calculaPrecio(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1521</x><y>792</y><w>189</w><h>117</h></coordinates><panel_attributes>VIP
+--
+-nombrePalco: String
+-fila: int
+-columna: int
+-tieneFirma: boolean
+-costeAdicional: double
+--
++calculaPrecio(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1494</x><y>819</y><w>45</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1494</x><y>729</y><w>45</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1494</x><y>729</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1278</x><y>747</y><w>189</w><h>63</h></coordinates><panel_attributes>Individuales
+--
+-dni: String
+--
++calculaPrecio(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1458</x><y>774</y><w>63</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1251</x><y>774</y><w>27</w><h>198</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;200</additional_attributes></element><element><id>Relation</id><coordinates><x>1251</x><y>945</y><w>288</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;300;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1251</x><y>774</y><w>45</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1368</x><y>648</y><w>414</w><h>324</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
+m2= 2..* Entradas
+</panel_attributes><additional_attributes>380;340;440;340;440;20;10;20;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>135</x><y>207</y><w>999</w><h>477</h></coordinates><panel_attributes>lt=-&gt;
+m1= Promotor
+m2= 1..* Conciertos</panel_attributes><additional_attributes>10;300;10;510;1020;510;1020;10;990;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1107</x><y>513</y><w>126</w><h>288</h></coordinates><panel_attributes>lt=&lt;-
+m1= Zona
+m2=Establece</panel_attributes><additional_attributes>120;10;10;10;10;300</additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>180</y><w>216</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=Lugar</panel_attributes><additional_attributes>220;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>243</y><w>135</w><h>558</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
+r1=1..* Entradas</panel_attributes><additional_attributes>60;600;60;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>198</x><y>36</y><w>198</w><h>72</h></coordinates><panel_attributes>UsuarioNoRegistrado
+--
+
+--
++registrarse(n: String, c: String): void
++login(n:String, c: String): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>0</y><w>288</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=1..* Usuarios</panel_attributes><additional_attributes>300;110;300;10;10;10;10;40</additional_attributes></element><element><id>UMLNote</id><coordinates><x>963</x><y>882</y><w>252</w><h>117</h></coordinates><panel_attributes>Method: calculaPrecio() -&gt; Entrada
+
+public double calculaPrecio() {
+	if concierto.localizacion == Estadio {
+	 	precioBase = precioBase - (precioBase*2/100)
+	}
+	return precioBase;
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1530</x><y>990</y><w>297</w><h>171</h></coordinates><panel_attributes>Method: calculaPrecio() -&gt; Entrada Grupal
+
+@Override
+public double calculaPrecio() {
+	for entrada in entradasGrupo {
+		precioTotal = entrada.precioBase;
+		numEntradas += numEntradas;
+	}
+	if numEntradas &gt; 15: numEntradas = 15;
+	precioTotal=precioTotal - precioTotal*numEntradas/100
+	return super.calculaPrecio()+precioTotal;
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1773</x><y>666</y><w>198</w><h>99</h></coordinates><panel_attributes>Method: calculaPrecio() -&gt; LowCost
+
+@Override
+public double calculaPrecio() {
+	return super.calculaPrecio();
+}
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1161</x><y>630</y><w>198</w><h>99</h></coordinates><panel_attributes>Method: calculaPrecio() -&gt; Indivudual
+
+@Override
+public double calculaPrecio() {
+	return super.calculaPrecio();
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1773</x><y>792</y><w>198</w><h>99</h></coordinates><panel_attributes>Method: calculaPrecio() -&gt; VIP
+
+@Override
+public double calculaPrecio() {
+	if tieneFirma == true {
+		return super.calculaPrecio() + this.costeAdicional;
+	}
+	else {
+		return super.calculaPrecio();
+	}
+}
+
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -1,0 +1,38 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>765</x><y>423</y><w>639</w><h>108</h></coordinates><panel_attributes>EmbarcacionMotor
+--
+-numMotores: int
++COSTE_MOTOR: double = 20.0 {constante}
+--
++EmbarcacionMotor(nombre: String, capacidad: int, dimensiones: double, numMotores: int, motor: TipoMotor) {constructor}
++getCoste(): double
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>891</x><y>576</y><w>387</w><h>90</h></coordinates><panel_attributes>LanchaCompeticion
+--
+-esCatamaran: boolean
+--
++LanchaCompeticion(nombre: String, esCatamaran: boolean) {constructor}
++getCoste(): double
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1548</x><y>423</y><w>189</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+TipoMotor
+--
++GASOLINA
++DIESEL
++ELECTRICO
+--
++factorMotor(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>495</x><y>207</y><w>423</w><h>126</h></coordinates><panel_attributes>Embarcacion
+--
+-nombre: String
+-capacidad: int
+-dimensiones: double
++COSTE_BASE: double = 5.0 {constante}
+--
++Embarcacion(nombre: String, capacidad: int, dimensiones: double) {constructor}
++getCoste(): double
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>423</y><w>549</w><h>99</h></coordinates><panel_attributes>Velero
+--
+-numMastil: int
+-longMastil: dobule
+--
++Velero(nombre: int, capacidad: int, dimensiones: double, longMastil: int, numMastil: double) {constructor}
++getCoste(): double
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>702</x><y>324</y><w>27</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>369</y><w>747</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;810;10</additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>369</y><w>27</w><h>72</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1071</x><y>369</y><w>27</w><h>72</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1395</x><y>468</y><w>171</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=tipoMotor</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1071</x><y>522</y><w>27</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element></diagram>
