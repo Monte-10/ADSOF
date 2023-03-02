@@ -8,6 +8,11 @@ public class TesterVerticesArcos {
         
         for (Vertice v : ciudades)
             System.out.print(v+" ");
+
+        System.out.println("\n\nComprobamos que los id de los vértices son correctos\n");
+
+        for (Vertice v : ciudades)
+            System.out.println(v+" ");
         
         System.out.println();
         
@@ -16,6 +21,11 @@ public class TesterVerticesArcos {
                             new Arco(ciudades[0], ciudades[3], "350 km"),
                             new Arco(ciudades[3], ciudades[1], "350 km")};
         
+        for (Arco a : carreteras)
+            System.out.println(a);
+
+        System.out.println("\nComprobamos que los id de los arcos son correctos\n");
+
         for (Arco a : carreteras)
             System.out.println(a);
     }
