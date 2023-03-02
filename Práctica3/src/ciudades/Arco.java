@@ -1,5 +1,10 @@
 package ciudades;
 
+/**
+ * @author Álvaro Mendez y Alejandro Monterrubio // alvaro.mendezl@estudiante.uam.es alejandro.monterrubio@estudiante.uam.es
+ * 
+ * Esta clase representa un arco de un grafo. 
+ */
 public class Arco {
     private Vertice origen;
     private Vertice destino;
@@ -7,6 +12,13 @@ public class Arco {
     private static int numArcos;
     private int id;
 
+    /**
+     * Constructor de la clase Arco
+     * 
+     * @param origen
+     * @param destino
+     * @param distancia
+     */
     public Arco(Vertice origen, Vertice destino, String distancia) {
         this.origen = origen;
         this.destino = destino;
@@ -15,6 +27,10 @@ public class Arco {
         numArcos++;
     }
 
+    /**
+     * Método toString que devuelve la distancia entre dos ciudades
+     * @return Distancia entre dos cuidades
+     */
     public String toString() {
         return distancia + "(" + id +"): " + origen.getNombre() + " -- " + destino.getNombre();
     }
