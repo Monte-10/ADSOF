@@ -1,4 +1,4 @@
-package ciudades;
+package nodos;
 public class TesterVerticesArcos {
     public static void main(String[] args) {
         Vertice[] ciudades = {new Vertice("Madrid"),
