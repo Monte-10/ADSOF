@@ -35,4 +35,12 @@ public class Arco {
         return distancia + "(" + id +"): " + origen.getNombre() + " -- " + destino.getNombre();
     }
 
+    public Vertice getOrigen() {
+        return origen;
+    }
+
+    public Vertice getDestino() {
+        return destino;
+    }
+
 }
