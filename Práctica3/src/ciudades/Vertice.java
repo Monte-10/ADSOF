@@ -11,5 +11,8 @@ public class Vertice {
         return nombre + "(" + id + ")";
     }
 
+    public String getNombre() {
+        return nombre;
+    }
     
 }
