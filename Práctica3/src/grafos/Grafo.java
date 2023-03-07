@@ -12,6 +12,10 @@ public abstract class Grafo {
         this.nombre = nombre;
     }
 
+    public String toString() {
+        return nombre + "\n" + "Vertices: " + vertices + "\n" + "Arcos: " + arcos;
+    }
+
     public boolean addVertices(String ... nombres) {
         /* Comprobamos que el nombre no contenga , y que no se repita */
         for (String nombre : nombres) {
@@ -36,9 +40,7 @@ public abstract class Grafo {
     /* El método addArco recibe las etiquetas del vértice origen y destino, y la del propio arco. Si los vértices origen y destino
     existen, y la etiqueta del arco no contiene ‘,’ el método crea internamente el arco y lo añade al grafo (y si no, no lo añade). */
     public void addArco(String origen, String destino, String etiqueta) {
-        if (getVertice(origen) != null && getVertice(destino) != null && !etiqueta.contains(",") && origen != destino) {
-            arcos.add(new Arco(getVertice(origen), getVertice(destino), etiqueta));
-        }
+        return;
     }
 
     public Arco getArco(String origen, String destino) {
@@ -50,7 +52,15 @@ public abstract class Grafo {
         return null;
     }
 
-    public String toString() {
-        return nombre + "\n" + "Vertices: " + vertices + "\n" + "Arcos: " + arcos;
+    public List<Arco> getArcos() {
+        return arcos;
+    }
+
+    public List<Vertice> getVertices() {
+        return vertices;
+    }
+
+    public Arco concatena(Arco arco1, Arco arco2) {
+        return null;
     }
 }

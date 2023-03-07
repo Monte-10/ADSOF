@@ -43,4 +43,12 @@ public class Arco {
         return destino;
     }
 
+    public String getEtiqueta() {
+        return distancia;
+    }
+
+    public void setEtiqueta(String etiqueta) {
+        this.distancia = etiqueta;
+    }
+
 }

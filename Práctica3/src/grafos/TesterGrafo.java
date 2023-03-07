@@ -25,5 +25,6 @@ public class TesterGrafo {
         Arco madBar = gr.getArco("Madrid", "Barcelona");
         System.out.println(madBar);
         System.out.println(gr.getArco("Toledo", "Madrid")); // este arco no existe
+
     }
 }
