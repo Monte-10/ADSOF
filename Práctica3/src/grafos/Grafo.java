@@ -17,16 +17,20 @@ public abstract class Grafo {
     }
 
     public boolean addVertices(String ... nombres) {
+        boolean flag = true;
+        boolean status = true;
+
         /* Comprobamos que el nombre no contenga , y que no se repita */
         for (String nombre : nombres) {
+            flag = true;
             if (nombre.contains(",") || getVertice(nombre) != null) {
-                return false;
+                flag = false;
+                status = false;
             }
-            vertices.add(new Vertice(nombre));
+            if (flag) vertices.add(new Vertice(nombre));
         }
-
-        return true;
         
+        return status;
     }
 
     public Vertice getVertice(String nombre) {
@@ -60,7 +64,25 @@ public abstract class Grafo {
         return vertices;
     }
 
-    public Arco concatena(Arco arco1, Arco arco2) {
-        return null;
+    public boolean concatena(Arco arco1, Arco arco2) {
+        return false;
+    }
+
+    public void borraArco(String origen, String destino) {
+        return;
+    }
+
+    public int grado(String nombre) {
+        return 0;
+    }
+
+    public String esRegular() {
+        int grado = grado(vertices.get(0).getNombre());
+        for (Vertice v : vertices) {
+            if (grado(v.getNombre()) != grado) {
+                return "false";
+            }
+        }
+        return "true";
     }
 }

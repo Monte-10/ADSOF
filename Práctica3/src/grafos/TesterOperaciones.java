@@ -18,6 +18,7 @@ public class TesterOperaciones {
         System.out.println(gr);
         System.out.println("Grado de Madrid: " + gr.grado("Madrid"));
         System.out.println("Es regular: " + gr.esRegular());
-        System.out.println("Es regular: " + gr.borraArco("Barcelona", "Madrid").esRegular());
+        gr.borraArco("Barcelona", "Madrid");
+        System.out.println("Es regular: " + gr.esRegular());
     }
 }    
