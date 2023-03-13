@@ -1,0 +1,5 @@
+Dirigido
+Carreteras
+Madrid,Barcelona,Bilbao,Zaragoza
+Madrid,Barcelona,506 km
+Barcelona,Bilbao,350 km

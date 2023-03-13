@@ -1,8 +1,10 @@
 package grafos;
 import java.util.*;
 import nodos.*;
+import java.io.*;
 
 public class GrafoDirigido extends Grafo {
+
     public GrafoDirigido(String nombre) {
         super(nombre);
     }
@@ -19,7 +21,7 @@ public class GrafoDirigido extends Grafo {
 
         if (getVertice(origen) != null && getVertice(destino) != null && !etiqueta.contains(",") && origen != destino) {
             for (Arco a : arcos) {
-                if (a.getOrigen().getNombre() == origen && a.getDestino().getNombre() == destino) {
+                if (a.getOrigen().getNombre().equals(origen) && a.getDestino().getNombre().equals(destino)) {
                     return;
                 }
             }
@@ -43,12 +45,12 @@ public class GrafoDirigido extends Grafo {
     }
 
     @Override
-    public void borraArco (String origen, String destino) {
+    public void borraArco(String origen, String destino) {
         List<Arco> arcos;
         arcos = super.getArcos();
 
         for (Arco a : arcos) {
-            if (a.getOrigen().getNombre() == origen && a.getDestino().getNombre() == destino) {
+            if (a.getOrigen().getNombre().equals(origen) && a.getDestino().getNombre().equals(destino)) {
                 arcos.remove(a);
             }
         }
@@ -61,14 +63,68 @@ public class GrafoDirigido extends Grafo {
         arcos = super.getArcos();
 
         for (Arco a : arcos) {
-            if (a.getOrigen().getNombre() == nombre) {
+            if (a.getOrigen().getNombre().equals(nombre)) {
                 grado++;
             }
 
-            if (a.getDestino().getNombre() == nombre) {
+            if (a.getDestino().getNombre().equals(nombre)) {
                 grado++;
             }
         }
         return grado;
+    }
+
+    
+    public static GrafoDirigido desdeFichero(String nombreFichero) throws FileNotFoundException {
+        File fichero = new File(nombreFichero);
+        FileReader fr = new FileReader(fichero);
+        
+        try (BufferedReader br = new BufferedReader(fr)) {
+            String tipoGrafo = br.readLine().trim();
+            if (tipoGrafo.equals("Dirigido")) {
+                String nombre = br.readLine().trim();
+                System.out.println(nombre);
+                GrafoDirigido grafo = new GrafoDirigido(nombre);
+                String vertices = br.readLine().trim();
+                String[] verticesArray = vertices.split(",");
+                grafo.addVertices(verticesArray);
+                String linea = br.readLine();
+                while (linea != null) {
+                    String[] arco = linea.split(",");
+                    grafo.addArco(arco[0], arco[1], arco[2]);
+                    linea = br.readLine();
+                }
+                return grafo;
+
+            } else {
+                return null;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error de lectura");
+        }
+        return null;
+    }
+
+    @Override
+    public void salvar(String nombreFichero) throws IOException{
+        List<Arco> arcos;
+
+        try(FileWriter fw = new FileWriter(nombreFichero)) {
+            String tipoGrafo = "Dirigido";
+            fw.write(tipoGrafo+"\n");
+            String nombre = super.getNombre();
+            fw.write(nombre+"\n");
+            fw.write(String.join(",", super.getEtiquetasVertices())+"\n");
+            arcos = super.getArcos();
+            for (Arco a: arcos) {
+                fw.write(a.getOrigen().getNombre() + "," + a.getDestino().getNombre() + "," + a.getEtiqueta() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error de escritura");
+        }
     }
 }

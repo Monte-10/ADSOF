@@ -2,6 +2,7 @@ package grafos;
 
 import java.util.*;
 import nodos.*;
+import java.io.*;
 
 public abstract class Grafo {
     private String nombre;
@@ -64,6 +65,18 @@ public abstract class Grafo {
         return vertices;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEtiquetasVertices() {
+        String etiquetas = "";
+        for (Vertice v : vertices) {
+            etiquetas += v.getNombre() + ",";
+        }
+        return etiquetas.substring(0, etiquetas.length() - 1);
+    }
+
     public boolean concatena(Arco arco1, Arco arco2) {
         return false;
     }
@@ -84,5 +97,13 @@ public abstract class Grafo {
             }
         }
         return "true";
+    }
+    
+    public static Grafo desdeFichero(String nombreFichero) throws FileNotFoundException{
+        return null;
+    }
+
+    public void salvar(String nombreFichero) throws IOException{
+        return;
     }
 }
