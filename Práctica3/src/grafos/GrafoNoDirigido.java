@@ -2,17 +2,42 @@ package grafos;
 import java.util.*;
 import nodos.*;
 import java.io.*;
+
+/**
+ * Clase que representa un grafo no dirigido.
+ * 
+ * @author Álvaro Mendez y Alejandro Monterrubio // alvaro.mendezl@estudiante.uam.es alejandro.monterrubio@estudiante.uam.es
+ */
 public class GrafoNoDirigido extends Grafo{
 
+    /**
+     * Constructor de la clase GrafoNoDirigido
+     * 
+     * @param nombre
+     */
     public GrafoNoDirigido(String nombre) {
         super(nombre);
     }
 
+    /**
+     * Método toString que devuelve el grafo no dirigido
+     * 
+     * @return Grafo no dirigido
+     */
     @Override
     public String toString() {
         return "Grafo no dirigido " + super.toString();
     }
 
+    /**
+     * Método que añade un arco al grafo no dirigido
+     * 
+     * @param origen
+     * @param destino
+     * @param etiqueta
+     * 
+     * @return
+     */
     @Override
     public void addArco(String origen, String destino, String etiqueta) {
         List<Arco> arcos;
@@ -38,6 +63,14 @@ public class GrafoNoDirigido extends Grafo{
         }
     }
 
+    /**
+     * Método que concatena dos arcos
+     * 
+     * @param arco1
+     * @param arco2
+     * 
+     * @return true si se ha podido concatenar, false en caso contrario
+     */
     @Override
     public boolean concatena(Arco arco1, Arco arco2) {
         Vertice origen = arco1.getOrigen();
@@ -52,6 +85,14 @@ public class GrafoNoDirigido extends Grafo{
         return true;
     }
 
+    /**
+     * Método que borra un arco del grafo no dirigido
+     * 
+     * @param origen
+     * @param destino
+     * 
+     * @return Arco borrado
+     */
     @Override
     public Arco borraArco(String origen, String destino) {
         List<Arco> arcos;
@@ -73,6 +114,13 @@ public class GrafoNoDirigido extends Grafo{
         return null;
     }
 
+    /**
+     * Método que devuelve el grado de un vértice
+     * 
+     * @param nombre
+     * 
+     * @return Grado del vértice
+     */
     @Override
     public int grado(String nombre) {
         int grado = 0;
@@ -88,6 +136,13 @@ public class GrafoNoDirigido extends Grafo{
         return grado;
     }
 
+    /**
+     * Método que carga un grafo no dirigido desde un fichero
+     * 
+     * @param nombreFichero
+     * @return Grafo no dirigido
+     * @throws FileNotFoundException
+     */
     public static GrafoNoDirigido desdeFichero(String nombreFichero) throws FileNotFoundException {
         File fichero = new File(nombreFichero);
         FileReader fr = new FileReader(fichero);
@@ -120,6 +175,12 @@ public class GrafoNoDirigido extends Grafo{
         return null;
     }
 
+    /**
+     * Método que guarda un grafo no dirigido en un fichero
+     * 
+     * @param nombreFichero
+     * @throws IOException
+     */
     @Override
     public void salvar(String nombreFichero) throws IOException {
         List<Arco> arcos;

@@ -35,18 +35,34 @@ public class Arco {
         return distancia + "(" + id +"): " + origen.getNombre() + " -- " + destino.getNombre();
     }
 
+    /**
+     * Método que devuelve el vértice origen del arco
+     * @return origen
+     */
     public Vertice getOrigen() {
         return origen;
     }
 
+    /**
+     * Método que devuelve el vértice destino del arco
+     * @return destino
+     */
     public Vertice getDestino() {
         return destino;
     }
 
+    /**
+     * Método que devuelve la etiqueta del arco
+     * @return distancia
+     */
     public String getEtiqueta() {
         return distancia;
     }
 
+    /**
+     * Método que devuelve establece la etiqueta del arco
+     * @return 
+     */
     public void setEtiqueta(String etiqueta) {
         this.distancia = etiqueta;
     }
