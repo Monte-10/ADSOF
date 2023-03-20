@@ -45,15 +45,19 @@ public class GrafoDirigido extends Grafo {
     }
 
     @Override
-    public void borraArco(String origen, String destino) {
+    public Arco borraArco(String origen, String destino) {
         List<Arco> arcos;
         arcos = super.getArcos();
 
         for (Arco a : arcos) {
             if (a.getOrigen().getNombre().equals(origen) && a.getDestino().getNombre().equals(destino)) {
+                Arco arco = a;
                 arcos.remove(a);
+                return arco;
             }
         }
+
+        return null;
     }
 
     @Override

@@ -81,8 +81,8 @@ public abstract class Grafo {
         return false;
     }
 
-    public void borraArco(String origen, String destino) {
-        return;
+    public Arco borraArco(String origen, String destino) {
+        return null;
     }
 
     public int grado(String nombre) {
