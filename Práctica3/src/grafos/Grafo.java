@@ -3,6 +3,7 @@ package grafos;
 import java.util.*;
 import nodos.*;
 import java.io.*;
+import matrices.*;
 
 /**
  * Esta clase representa un grafo dirigido o no dirigido
@@ -14,6 +15,7 @@ public abstract class Grafo {
     private String nombre;
     private List<Vertice> vertices = new ArrayList<>();
     private List<Arco> arcos = new ArrayList<>();
+    private MatrizPotencia mp;
 
     /**
      * Constructor de la clase Grafo
@@ -23,8 +25,68 @@ public abstract class Grafo {
      */
     public Grafo(String nombre) {
         this.nombre = nombre;
+        this.mp = new MatrizPotencia();
     }
+     /**
+     *  Devuelve MatrizPotencia con las matrices hasta la potencia mas alta que se haya introducido.
+     *
+     * 
+     * @return Objeto MatrizPotencia asociado al grafo
+     */
+    public MatrizPotencia matricesPotencia()
+    {
+        return mp;
 
+    } 
+
+
+    /**
+     *  Calcula numero de caminos de una potencia determinada entre dos vertices
+     *
+     * @param potencia 
+     * @param e1
+     * @param e2
+     * @return Objeto MatrizPotencia asociado al grafo
+     */
+    public int camino(int potencia,String e1,String e2)
+    {
+        int i;
+        Matriz m = new Matriz(this);
+        Matriz m1 = new Matriz(this);
+        int[][] resultado;
+
+        if(mp.getPotencia() >= potencia && mp.getDirty() == false)
+        {
+            m1 = mp.getMatriz(potencia-1);
+            return m1.getMatriz()[this.vertices.indexOf(getVertice(e1))][this.vertices.indexOf(getVertice(e2))];
+
+        }
+
+        for(i=0;i<potencia;i++)
+        {
+            if(i == 0)
+            {
+                mp.addPotencia(m1);
+            }
+            else
+            {
+                resultado = m.matrizmult(m1,m);
+                m1 = new Matriz(resultado,this);
+                mp.addPotencia(m1);
+               
+            }
+            
+    
+        }
+        
+        
+        
+        return m1.getMatriz()[this.vertices.indexOf(getVertice(e1))][this.vertices.indexOf(getVertice(e2))];
+        
+      
+
+
+    }
     /**
      * Método toString
      * 
