@@ -1,3 +1,6 @@
+package tester;
+import fonoteca.*;
+
 public class FonotecaTester {
     public static void main(String[] args) {
         FonotecaTester main = new FonotecaTester();
