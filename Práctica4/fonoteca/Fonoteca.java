@@ -72,61 +72,11 @@ public class Fonoteca {
     public ListaMusica crearListaMusica(String titulo) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
         try {
             if (titulo == null || titulo.isEmpty()) {
-                throw new ExcepcionFonoteca("El título de la lista de música no puede ser nulo o vacío.");
+                throw new ExcepcionFonoteca("El título de la lista no puede ser nulo o vacío.");
             }
-            ArrayList<String> copiaTodasCanciones = new ArrayList<>(todasCanciones);
-            for (ListaMusica lista : listas) {
-                if (lista.getTitulo().equals(titulo)) {
-                    throw new ExcepcionFonoteca("La lista de música " + titulo + " ya existe.");
-                }
-
-                for (Object elemento : lista.getElementos()) {
-                    if (elemento instanceof Cancion) {
-                        Cancion cancion = (Cancion) elemento;
-                        if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                            throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
-                        }
-                        copiaTodasCanciones.add(cancion.getTitulo());
-                    }
-                    else if (elemento instanceof Album) {
-                        Album album = (Album) elemento;
-                        for (Cancion cancion : album.getCanciones()) {
-                            if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                                throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
-                            }
-                            copiaTodasCanciones.add(cancion.getTitulo());
-                        }
-                    }
-                    else if (elemento instanceof ListaMusica) {
-                        ListaMusica listaMusica = (ListaMusica) elemento;
-                        for (Object elementoLista : listaMusica.getElementos()) {
-                            if (elementoLista instanceof Cancion) {
-                                Cancion cancion = (Cancion) elementoLista;
-                                if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
-                                }
-                                copiaTodasCanciones.add(cancion.getTitulo());
-                            }
-                            else if (elementoLista instanceof Album) {
-                                Album album = (Album) elementoLista;
-                                for (Cancion cancion : album.getCanciones()) {
-                                    if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                                        throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
-                                    }
-                                    copiaTodasCanciones.add(cancion.getTitulo());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            todasCanciones = copiaTodasCanciones;
             ListaMusica lista = new ListaMusica(titulo);
             listas.add(lista);
             return lista;
-        } catch (ExcepcionCancionRepetida cr) {
-            throw cr;
         } catch (ExcepcionFonoteca e) {
             throw e;
         }
@@ -180,20 +130,8 @@ public class Fonoteca {
             if (album == null) {
                 throw new ExcepcionFonoteca("El álbum está vacío.");
             }
-            ArrayList<String> copiaTodasCanciones = new ArrayList<>(todasCanciones);
-            for (Cancion cancion : album.getCanciones()) {
-                if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
-                }
-                copiaTodasCanciones.add(cancion.getTitulo());
-            }
-            for (Cancion cancion : album.getCanciones()) {
-                todasCanciones.add(cancion.getTitulo());
-            }
             lista.addElemento(album);
             return this;
-        } catch (ExcepcionCancionRepetida cr) {
-            throw cr;
         } catch (ExcepcionFonoteca e) {
             throw e;
         }
