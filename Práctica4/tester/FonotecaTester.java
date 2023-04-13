@@ -1,14 +1,16 @@
 package tester;
+import excepciones.ExcepcionCancionRepetida;
+import excepciones.ExcepcionFonoteca;
 import fonoteca.*;
 
 public class FonotecaTester {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExcepcionCancionRepetida, ExcepcionFonoteca {
         FonotecaTester main = new FonotecaTester();
         Fonoteca fonoteca = main.crearMusica();
         fonoteca.mostrar();
     }
 
-    public Fonoteca crearMusica() {
+    public Fonoteca crearMusica() throws ExcepcionCancionRepetida, ExcepcionFonoteca {
         Cancion[] canciones ={
             new Cancion("Radio ga ga", 5, 48), // Canción Radio ga ga, con duración 5:48
             new Cancion("Tear it up", 3, 28),
