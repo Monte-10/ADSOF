@@ -94,17 +94,13 @@ public class ListaMusica {
         for (Object elemento : elementos) {
             if (elemento instanceof Cancion) {
                 sb.append(contador).append(".").append(((Cancion) elemento).toString()).append("\n");
-                contador++;
             } else if (elemento instanceof Album) {
-                sb.append(subcontador).append(".").append(((Album) elemento).toString()).append("\n");
+                sb.append("\n").append(subcontador).append(".").append(((Album) elemento).toString());
                 subcontador++;
-                for (Cancion cancion : ((Album) elemento).getCanciones()) {
-                    sb.append(contador).append(".").append(cancion.toString()).append("\n");
-                    contador++;
-                }
             } else if (elemento instanceof ListaMusica) {
                 sb.append(((ListaMusica) elemento).toString());
             }
+            contador++;
         }
         return sb.toString();
     }
