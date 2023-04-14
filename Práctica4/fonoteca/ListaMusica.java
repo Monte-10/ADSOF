@@ -1,8 +1,9 @@
 package fonoteca;
 
 import java.util.*;
+import valoraciones.*;
 
-public class ListaMusica {
+public class ListaMusica implements IRecomendable{
     private String titulo;
     private List<Object> elementos;
     private int minutos;
@@ -105,5 +106,9 @@ public class ListaMusica {
         return sb.toString();
     }
     
-    
+    @Override
+    public String getDescripcion() {
+        return toString();
+    }
+
 }

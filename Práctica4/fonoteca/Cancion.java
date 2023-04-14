@@ -1,8 +1,9 @@
 package fonoteca;
 
 import java.util.*;
+import valoraciones.*;
 
-public class Cancion {
+public class Cancion implements IRecomendable{
     private String titulo;
     private int minutos;
     private int segundos;
@@ -43,5 +44,14 @@ public class Cancion {
     @Override
     public String toString() {
         return titulo + " (" + minutos + ":" + String.format("%02d", segundos) + ")";
+    }
+
+    @Override
+    public String getDescripcion() {
+        return toString();
+    }
+
+    public String toValoracion() {
+        return "CANCION: " + titulo;
     }
 }

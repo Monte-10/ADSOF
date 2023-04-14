@@ -1,8 +1,9 @@
 package fonoteca;
 
 import java.util.*;
+import valoraciones.*;
 
-public class Album {
+public class Album implements IRecomendable{
     private String titulo;
     private String artista;
     private final ArrayList<Cancion> canciones;
@@ -78,4 +79,22 @@ public class Album {
         }
         return sb.toString();
     }
+
+    @Override
+    public String getDescripcion() {
+        return toString();
+    }
+
+    public String toValoracion() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ALBUM: ").append(titulo).append(", ARTISTA: ").append(artista).append(", DURACION: ").append(getMinutos()).append(":").append(String.format("%02d", getSegundos()));
+        if (estilo != null) {
+            sb.append(", ESTILO: ").append(estilo);
+        } else {
+            sb.append(", ESTILO: SIN ESTILO");
+        }
+        sb.append("\n");
+        return sb.toString();
+    }
+
 }

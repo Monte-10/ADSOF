@@ -2,17 +2,22 @@ package fonoteca;
 
 import java.util.*;
 import excepciones.*;
+import valoraciones.*;
 
 public class Fonoteca {
     private List<Album> albums;
     private List<ListaMusica> listas;
     // Guarda titulos en forma de String para comprobar que canciones no se repitan
     private ArrayList<String> todasCanciones;
+    private AlmacenValoraciones almacenValoraciones;
+    private List<IUsuario> usuarios;
 
     public Fonoteca() {
         albums = new ArrayList<>();
         listas = new ArrayList<>();
         todasCanciones = new ArrayList<>();
+        almacenValoraciones = new AlmacenValoraciones();
+        usuarios = new ArrayList<>();
     }
 
     public Album crearAlbum(String titulo, String artista, EstiloMusical estilo, Cancion... canciones) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
@@ -185,5 +190,27 @@ public class Fonoteca {
             System.out.println(lista);
             System.out.println("--------------\n");
         }
+    }
+
+    public Usuario registrarUsuario(String nombre, String id) {
+        Usuario usuario = new Usuario(nombre, id);
+        usuarios.add(usuario);
+        this.almacenValoraciones.addUsuario(usuario);
+        return usuario;
+    }
+
+    public void valorar(IUsuario usuario, IRecomendable elemento, Valoracion valoracion) throws ExcepcionFonoteca{
+        if (usuarios.contains(usuario)) {
+            this.almacenValoraciones.addRecomendable(elemento);
+            this.almacenValoraciones.addValoracion(usuario, elemento, valoracion);
+        }
+
+        else {
+            throw new ExcepcionFonoteca("El usuario no está registrado.");
+        }
+    }
+
+    public void mostrarValoraciones(IUsuario usuario) {
+        this.almacenValoraciones.mostrarValoraciones(usuario);
     }
 }
