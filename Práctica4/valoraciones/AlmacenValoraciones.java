@@ -8,7 +8,7 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
     private Map<IUsuario, Map<IRecomendable, Valoracion>> valoraciones;
 
     public AlmacenValoraciones() {
-        valoraciones = new HashMap<>();
+        valoraciones = new LinkedHashMap<>();
         recomendables = new ArrayList<>();
     }
 
@@ -17,7 +17,7 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         if (valoraciones.containsKey(usuario)) {
             return false;
         }
-        valoraciones.put(usuario, new HashMap<>());
+        valoraciones.put(usuario, new LinkedHashMap<>());
         return true;
     }
 
@@ -27,25 +27,45 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
             return false;
         }
         recomendables.add(elemento);
-        for (Map<IRecomendable, Valoracion> valoracion : valoraciones.values()) {
-            valoracion.put(elemento, null);
+        if (elemento instanceof Album) {
+            Album album = (Album) elemento;
+            for (Cancion cancion : album.getCanciones()) {
+                recomendables.add(cancion);
+            }
+        }
+        else {
+            Cancion cancion = (Cancion) elemento;
+            recomendables.add(cancion);
         }
         return true;
     }
 
     @Override
     public void addValoracion(IUsuario usuario, IRecomendable elemento, Valoracion valoracion) {
+        // System.out.println("Añadiendo valoración " + valoracion + " de " + usuario + " a " + elemento);
         if (!valoraciones.containsKey(usuario)) {
             throw new IllegalArgumentException("El usuario no existe");
         }
-        if (!valoraciones.get(usuario).containsKey(elemento)) {
-            // Comprueba si elemento es un album y si lo es, añade las canciones
-            if (elemento instanceof Album) {
-                for (Cancion cancion : ((Album) elemento).getCanciones()) {
+
+        addRecomendable(elemento);
+
+        if (!recomendables.contains(elemento)) {
+            throw new IllegalArgumentException("El elemento no existe");
+        }
+        
+        if (elemento instanceof Album) {
+            Album album = (Album) elemento;
+            valoraciones.get(usuario).put(album, valoracion);
+            for (Cancion cancion : album.getCanciones()) {
+                // System.out.println("ESTA CANCION? " + cancion.getTitulo());
+                if (!valoraciones.get(usuario).containsKey(cancion)) {
+                    // System.out.println("Añadiendo canción " + cancion.getTitulo());
                     valoraciones.get(usuario).put(cancion, valoracion);
                 }
             }
-        } else {
+        }
+        else {
+            // System.out.println("Añadiendo canción " + elemento);
             valoraciones.get(usuario).put(elemento, valoracion);
         }
     }
@@ -67,7 +87,9 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         if (!valoraciones.containsKey(usuario)) {
             throw new IllegalArgumentException("El usuario no existe");
         }
-        Collection<IRecomendable> elementos = new ArrayList<>();
+        
+        Collection<IRecomendable> elementos = new LinkedHashSet<>();
+
         for (Map.Entry<IRecomendable, Valoracion> valoracion : valoraciones.get(usuario).entrySet()) {
             if (valoracion.getValue() != null) {
                 elementos.add(valoracion.getKey());
@@ -75,6 +97,7 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         }
         return elementos;
     }
+    
 
     @Override
     public Valoracion valoracion(IUsuario usuario, IRecomendable elemento) {
@@ -92,8 +115,22 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
             throw new IllegalArgumentException("El usuario no existe");
         }
         Map<IRecomendable, Valoracion> valoracionesUsuario = valoraciones.get(usuario);
+
         System.out.println("Valoraciones de " + usuario.getId());
         
+        Collection<IRecomendable> elem = elementosValorados(usuario);
+
+        for (IRecomendable recomendable : elem) {
+            if (recomendable instanceof Cancion) {
+                Cancion cancion = (Cancion) recomendable;
+                System.out.println("CANCION: " + cancion.getTitulo() + " [" + valoracion(usuario, cancion) + "]");
+            } else if (recomendable instanceof Album) {
+                Album album = (Album) recomendable;
+                System.out.println("ALBUM: " + album.getTitulo() + ", ARTISTA: " + album.getArtista() + ", DURACION: " + album.getMinutos() + ":" + album.getSegundos() + ", ESTILO: "+ album.getEstilo() + " [" + valoracion(usuario, album) + "]");
+            }
+        }
+
+        /*
         for (Map.Entry<IRecomendable, Valoracion> entry : valoracionesUsuario.entrySet()) {
             
             IRecomendable recomendable = entry.getKey();
@@ -109,6 +146,7 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
                 }
             }
         }
+        */
 }
     
 }

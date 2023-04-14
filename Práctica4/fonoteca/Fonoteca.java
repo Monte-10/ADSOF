@@ -29,7 +29,7 @@ public class Fonoteca {
             ArrayList<String> copiaTodasCanciones = new ArrayList<>(todasCanciones);
             for (Cancion cancion : canciones) {
                 if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
+                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " esta repetida.");
                 }
                 copiaTodasCanciones.add(cancion.getTitulo());
             }
@@ -56,7 +56,7 @@ public class Fonoteca {
             ArrayList<String> copiaTodasCanciones = new ArrayList<>(todasCanciones);
             for (Cancion cancion : canciones) {
                 if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
+                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " esta repetida.");
                 }
                 copiaTodasCanciones.add(cancion.getTitulo());
             }
@@ -95,7 +95,7 @@ public class Fonoteca {
             ArrayList<String> copiaTodasCanciones = new ArrayList<>(todasCanciones);
             for (Cancion cancion : canciones) {
                 if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
+                    throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " esta repetida.");
                 }
                 copiaTodasCanciones.add(cancion.getTitulo());
             }
@@ -118,7 +118,7 @@ public class Fonoteca {
                 throw new ExcepcionFonoteca("La canción está vacía.");
             }
             if (todasCanciones.contains(cancion.getTitulo())) {
-                throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
+                throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " esta repetida.");
             }
             todasCanciones.add(cancion.getTitulo());
             lista.addElemento(cancion);
@@ -152,7 +152,7 @@ public class Fonoteca {
                 if (elemento instanceof Cancion) {
                     Cancion cancion = (Cancion) elemento;
                     if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                        throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
+                        throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " esta repetida.");
                     }
                     copiaTodasCanciones.add(cancion.getTitulo());
                 }
@@ -160,7 +160,7 @@ public class Fonoteca {
                     Album album = (Album) elemento;
                     for (Cancion cancion : album.getCanciones()) {
                         if (copiaTodasCanciones.contains(cancion.getTitulo())) {
-                            throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " ya existe.");
+                            throw new ExcepcionCancionRepetida("La canción " + cancion.getTitulo() + " esta repetida.");
                         }
                         copiaTodasCanciones.add(cancion.getTitulo());
                     }
