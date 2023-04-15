@@ -30,7 +30,6 @@ public class Fonoteca {
         almacenValoraciones = new AlmacenValoraciones();
         usuarios = new ArrayList<>();
         this.recomendadorPopularidad = new RecomendadorPopularidad(almacenValoraciones, corte);
-        recomendadorAfinidad.setAlmacen(almacenValoraciones);
     }
 
     public Fonoteca(RecomendadorAfinidad recomendadorAfinidad) {
@@ -41,6 +40,7 @@ public class Fonoteca {
         usuarios = new ArrayList<>();
         this.recomendadorPopularidad = new RecomendadorPopularidad(almacenValoraciones, 0.0);
         this.recomendadorAfinidad = recomendadorAfinidad;
+        recomendadorAfinidad.setAlmacen(almacenValoraciones);
     }
 
     public Album crearAlbum(String titulo, String artista, EstiloMusical estilo, Cancion... canciones) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
@@ -243,9 +243,9 @@ public class Fonoteca {
 
         System.out.println("RECOMENDACIONES PARA: " + usuario.getId());
 
-        for (Recomendacion recomendacion : recomendaciones) {
+        /*for (Recomendacion recomendacion : recomendaciones) {
             System.out.println(recomendacion);
-        }
+        }*/
 
         for (Recomendacion recomendacion : recomendaciones2) {
             System.out.println(recomendacion);

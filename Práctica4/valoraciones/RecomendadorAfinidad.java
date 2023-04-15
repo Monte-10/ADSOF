@@ -12,22 +12,17 @@ public class RecomendadorAfinidad implements IRecomendador {
     }
 
     public Collection<Recomendacion> getRecomendaciones(IUsuario usuario) {
-        System.out.println(almacen);
         
         Collection<Recomendacion> recomendaciones = new TreeSet<Recomendacion>(java.util.Collections.reverseOrder());
         Collection<IUsuario> usuarios = almacen.getUsuarios();
 
-        System.out.println("Usuarios: " + usuarios);
-
-        /*for (IUsuario usuario2 : almacen.getUsuarios()) {
-            System.out.println("Usuario: " + usuario.getId() + " Usuario2: " + usuario2.getId());
-            if (!usuario.equals(usuario2)) {
-                System.out.println("Usuario: " + usuario.getId() + " Usuario2: " + usuario2.getId());
+        for (IUsuario usuario2 : usuarios) {
+            if (usuario.getId() != usuario2.getId()) {
                 double afinidad = almacen.getValoracionMediaAfinidad(usuario, usuario2);
                 if (afinidad >= corte) {
                     Collection<IRecomendable> elementos = almacen.getRecomendables();
                     for (IRecomendable elemento : elementos) {
-                        if (!almacen.haValorado(usuario, elemento)) {
+                        if (!almacen.haValorado(usuario, elemento) && almacen.haValorado(usuario2, elemento)) {
                             if (almacen.valoracion(usuario2, elemento) == Valoracion.LIKE) {
                                 Recomendacion recomendacion = new Recomendacion(elemento, afinidad);
                                 recomendaciones.add(recomendacion);
@@ -36,7 +31,7 @@ public class RecomendadorAfinidad implements IRecomendador {
                     }
                 }
             }
-        }*/
+        }
         return recomendaciones;
     }
 
