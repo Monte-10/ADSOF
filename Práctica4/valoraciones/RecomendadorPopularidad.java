@@ -19,6 +19,7 @@ public class RecomendadorPopularidad implements IRecomendador {
             double confianza = almacen.getValoracionMedia(elemento);
             if (confianza >= corte) {
                 if (!almacen.haValorado(usuario, elemento)) {
+
                     Recomendacion recomendacion = new Recomendacion(elemento, confianza);
                     recomendaciones.add(recomendacion);
                 }

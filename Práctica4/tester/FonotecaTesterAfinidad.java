@@ -1,3 +1,10 @@
+package tester;
+
+import fonoteca.*;
+import valoraciones.*;
+import excepciones.*;
+import java.util.*;
+
 public class FonotecaTesterAfinidad extends FonotecaTesterPopularidad {
     public static void main(String[] args) {
         FonotecaTesterAfinidad main = new FonotecaTesterAfinidad();

@@ -158,5 +158,41 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         media = Math.round(media * 100.0) / 100.0;
         return media;
     }
+
     
+    public double getValoracionMediaAfinidad(IUsuario usuario, IUsuario usuario2) {
+        double suma = 0;
+        int numUsuarios = valoraciones.size();
+
+        for (Map.Entry<IRecomendable, Valoracion> valoracion : valoraciones.get(usuario).entrySet()) {
+            System.out.println("VALORACION: " + valoracion.getKey() + " [" + valoracion.getValue() + "]");
+            if (valoracion.getValue() != null) {
+                if (valoraciones.get(usuario2).containsKey(valoracion.getKey()) && valoraciones.get(usuario2).get(valoracion.getKey()) != null) {
+                    if (valoracion.getValue() == valoraciones.get(usuario2).get(valoracion.getKey()) && valoracion.getValue() == Valoracion.LIKE) {
+                        System.out.println("A " + usuario.getId() + " le gusta " + valoracion.getKey() + " y a " + usuario2.getId() + " también");
+                        suma += 1;
+                    }
+                    else if (valoracion.getValue() == valoraciones.get(usuario2).get(valoracion.getKey()) && valoracion.getValue() == Valoracion.DISLIKE) {
+                        System.out.println("A " + usuario.getId() + " no le gusta " + valoracion.getKey() + " y a " + usuario2.getId() + " tampoco");
+                        suma += 0.5;
+                    }
+                    else if (valoracion.getValue() != valoraciones.get(usuario2).get(valoracion.getKey())) {
+                        System.out.println("A " + usuario.getId() + " le gusta " + valoracion.getKey() + " y a " + usuario2.getId() + " no");
+                        suma -= 0.5;
+                    }
+                }
+            }
+        }
+        System.out.println("Suma: " + suma);
+        double media = suma / numUsuarios;
+        System.out.println("Media: " + media);
+        media = Math.round(media * 100.0) / 100.0;
+
+        return media;
+    }
+
+    public Collection<IUsuario> getUsuarios() {
+        return valoraciones.keySet();
+    }
+
 }
