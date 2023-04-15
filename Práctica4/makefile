@@ -4,9 +4,9 @@ JV = java
 .java.class:
 	$(JC) $*.java
 
-CLASSES = fonoteca/Album.java fonoteca/Cancion.java fonoteca/EstiloMusical.java fonoteca/Fonoteca.java fonoteca/ListaMusica.java tester/FonotecaTester.java tester/FonotecaTesterErrores.java tester/FonotecaTesterValoraciones.java
+CLASSES = fonoteca/Album.java fonoteca/Cancion.java fonoteca/EstiloMusical.java fonoteca/Fonoteca.java fonoteca/ListaMusica.java tester/FonotecaTester.java tester/FonotecaTesterErrores.java tester/FonotecaTesterValoraciones.java tester/FonotecaTesterPopularidad.java
 
-MAIN = tester/FonotecaTesterValoraciones
+MAIN = tester/FonotecaTesterPopularidad
 
 default: classes
 

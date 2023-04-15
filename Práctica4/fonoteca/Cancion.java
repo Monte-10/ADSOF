@@ -48,10 +48,7 @@ public class Cancion implements IRecomendable{
 
     @Override
     public String getDescripcion() {
-        return toString();
-    }
-
-    public String toValoracion() {
         return "CANCION: " + titulo;
     }
+
 }

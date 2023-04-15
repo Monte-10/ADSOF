@@ -82,19 +82,8 @@ public class Album implements IRecomendable{
 
     @Override
     public String getDescripcion() {
-        return toString();
+        return "ALBUM: " + titulo;
     }
 
-    public String toValoracion() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ALBUM: ").append(titulo).append(", ARTISTA: ").append(artista).append(", DURACION: ").append(getMinutos()).append(":").append(String.format("%02d", getSegundos()));
-        if (estilo != null) {
-            sb.append(", ESTILO: ").append(estilo);
-        } else {
-            sb.append(", ESTILO: SIN ESTILO");
-        }
-        sb.append("\n");
-        return sb.toString();
-    }
 
 }

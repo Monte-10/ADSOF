@@ -12,6 +12,10 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         recomendables = new ArrayList<>();
     }
 
+    public List<IRecomendable> getRecomendables() {
+        return this.recomendables;
+    }
+
     @Override
     public boolean addUsuario(IUsuario usuario) {
         if (valoraciones.containsKey(usuario)) {
@@ -77,9 +81,12 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
             throw new IllegalArgumentException("El usuario no existe");
         }
         if (!valoraciones.get(usuario).containsKey(elemento)) {
-            throw new IllegalArgumentException("El elemento no existe");
+            return false;
         }
-        return valoraciones.get(usuario).get(elemento) != null;
+        if (valoraciones.get(usuario).get(elemento) != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -129,24 +136,27 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
                 System.out.println("ALBUM: " + album.getTitulo() + ", ARTISTA: " + album.getArtista() + ", DURACION: " + album.getMinutos() + ":" + album.getSegundos() + ", ESTILO: "+ album.getEstilo() + " [" + valoracion(usuario, album) + "]");
             }
         }
+    }
 
-        /*
-        for (Map.Entry<IRecomendable, Valoracion> entry : valoracionesUsuario.entrySet()) {
-            
-            IRecomendable recomendable = entry.getKey();
-            Valoracion valoracion = entry.getValue();
-
-            if (valoracion != null) {
-                if (recomendable instanceof Cancion) {
-                    Cancion cancion = (Cancion) recomendable;
-                    System.out.println("CANCION: " + cancion.getTitulo() + " [" + valoracion + "]");
-                } else if (recomendable instanceof Album) {
-                    Album album = (Album) recomendable;
-                    System.out.println("Álbum: " + album.getTitulo() + ", ARTISTA: " + album.getArtista() + ", DURACION: " + album.getMinutos() + ":" + album.getSegundos() + ", ESTILO: "+ album.getEstilo() + " [" + valoracion + "]");
+    public double getValoracionMedia(IRecomendable elemento) {
+        double suma = 0;
+        int numUsuarios = valoraciones.size();
+        for (Map<IRecomendable, Valoracion> valoracionesUsuario : valoraciones.values()) {
+            if (valoracionesUsuario.containsKey(elemento)) {
+                Valoracion valoracion = valoracionesUsuario.get(elemento);
+                if (valoracion != null) {
+                    if (valoracion == Valoracion.LIKE) {
+                        suma += 1;
+                    }
+                    else if (valoracion == Valoracion.DISLIKE) {
+                        suma -= 0.5;
+                    }
                 }
             }
         }
-        */
-}
+        double media = suma / numUsuarios;
+        media = Math.round(media * 100.0) / 100.0;
+        return media;
+    }
     
 }
