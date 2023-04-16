@@ -3,19 +3,41 @@ package valoraciones;
 import java.util.*;
 import fonoteca.*;
 
+/**
+ * Clase que representa un almacen de valoraciones
+ * 
+ * @author Álvaro Mendez y Alejandro Monterrubio // alvaro.mendezl@estudiante.uam.es alejandro.monterrubio@estudiante.uam.es
+ * 
+ */
 public class AlmacenValoraciones implements IAlmacenValoraciones {
     private List<IRecomendable> recomendables;
     private Map<IUsuario, Map<IRecomendable, Valoracion>> valoraciones;
 
+    /**
+     * Constructor de la clase AlmacenValoraciones
+     * 
+     */
     public AlmacenValoraciones() {
         valoraciones = new LinkedHashMap<>();
         recomendables = new ArrayList<>();
     }
 
+    /**
+     * Metodo que devuelve las valoraciones del almacen
+     * 
+     * @return valoraciones guardadas en el almacen
+     */
     public List<IRecomendable> getRecomendables() {
         return this.recomendables;
     }
 
+    /**
+     * Metodo que añade un usuario al almacen
+     * 
+     * @param usuario usuario a añadir
+     * 
+     * @return true si se ha añadido correctamente, false en caso contrario
+     */
     @Override
     public boolean addUsuario(IUsuario usuario) {
         if (valoraciones.containsKey(usuario)) {
@@ -25,6 +47,13 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return true;
     }
 
+    /**
+     * Metodo que añaade un recomendable al almacen
+     * 
+     * @param elemento elemento a añadir
+     * 
+     * @return true si se ha añadido correctamente, false en caso contrario
+     */
     @Override
     public boolean addRecomendable(IRecomendable elemento) {
         if (recomendables.contains(elemento)) {
@@ -44,6 +73,16 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return true;
     }
 
+    /**
+     * Metodo que añade una valoracion a un usuario
+     * 
+     * @param usuario usuario al que se le añade la valoracion
+     * @param elemento elemento valorado
+     * @param valoracion valoracion del elemento
+     * 
+     * @throws IllegalArgumentException si el usuario no existe
+     * @throws IllegalArgumentException si el elemento no existe
+     */
     @Override
     public void addValoracion(IUsuario usuario, IRecomendable elemento, Valoracion valoracion) {
         // System.out.println("Añadiendo valoración " + valoracion + " de " + usuario + " a " + elemento);
@@ -74,7 +113,16 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         }
     }
 
-
+    /**
+     * Metodo que devuelve si un usuario ha valorado un elemento
+     * 
+     * @param usuario usuario que se quiere comprobar
+     * @param elemento elemento que se quiere comprobar
+     * 
+     * @return true si el usuario ha valorado el elemento, false en caso contrario
+     * 
+     * @throws IllegalArgumentException si el usuario no existe
+     */
     @Override
     public boolean haValorado(IUsuario usuario, IRecomendable elemento) {
         if (!valoraciones.containsKey(usuario)) {
@@ -89,6 +137,15 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return false;
     }
 
+    /**
+     * Metodo que devuelve los elementos valorados por un usuario
+     * 
+     * @param usuario usuario del que se quieren obtener los elementos valorados
+     * 
+     * @return elementos valorados por el usuario
+     * 
+     * @throws IllegalArgumentException si el usuario no existe
+     */
     @Override
     public Collection<IRecomendable> elementosValorados(IUsuario usuario) {
         if (!valoraciones.containsKey(usuario)) {
@@ -105,7 +162,16 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return elementos;
     }
     
-
+    /**
+     * Metodo que devuelve las valoraciones de un usuario
+     * 
+     * @param usuario usuario del que se quieren obtener las valoraciones
+     * @param elemento elemento valorado
+     * 
+     * @return valoraciones del usuario
+     * 
+     * @throws IllegalArgumentException si el usuario no existe
+     */
     @Override
     public Valoracion valoracion(IUsuario usuario, IRecomendable elemento) {
         if (!valoraciones.containsKey(usuario)) {
@@ -117,6 +183,13 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return valoraciones.get(usuario).get(elemento);
     }
 
+    /**
+     * Metodo que muestra las valoraciones de un usuario
+     * 
+     * @param usuario usuario del que se quieren obtener las valoraciones
+     * 
+     * @throws IllegalArgumentException si el usuario no existe
+     */
     public void mostrarValoraciones(IUsuario usuario) {
         if (!valoraciones.containsKey(usuario)) {
             throw new IllegalArgumentException("El usuario no existe");
@@ -138,6 +211,13 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         }
     }
 
+    /**
+     * Metodo que devuelve la valoracion media de un elemento
+     * 
+     * @param elemento elemento del que se quiere obtener la valoracion media
+     * 
+     * @return valoracion media del elemento
+     */
     public double getValoracionMedia(IRecomendable elemento) {
         double suma = 0;
         int numUsuarios = valoraciones.size();
@@ -159,7 +239,14 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return media;
     }
 
-    
+    /**
+     * Metodo que devuelve la valoracion media de afinidad entre dos usuarios
+     * 
+     * @param usuario usuario del que se quiere obtener la valoracion media
+     * @param usuario2 usuario del que se quiere obtener la valoracion media
+     * 
+     * @return valoracion media de afinidad entre los dos usuarios
+     */
     public double getValoracionMediaAfinidad(IUsuario usuario, IUsuario usuario2) {
         double suma = 0;
         int numUsuarios = valoraciones.size();
@@ -185,6 +272,11 @@ public class AlmacenValoraciones implements IAlmacenValoraciones {
         return media;
     }
 
+    /**
+     * Método que devuelve los usuarios del almacen
+     * 
+     * @return usuarios del almacen
+     */
     public Collection<IUsuario> getUsuarios() {
         return valoraciones.keySet();
     }

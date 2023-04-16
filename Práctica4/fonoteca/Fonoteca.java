@@ -4,6 +4,12 @@ import java.util.*;
 import excepciones.*;
 import valoraciones.*;
 
+/**
+ * Clase que representa una fonoteca
+ * 
+ * @author Álvaro Mendez y Alejandro Monterrubio // alvaro.mendezl@estudiante.uam.es alejandro.monterrubio@estudiante.uam.es
+ * 
+ */
 public class Fonoteca {
     private List<Album> albums;
     private List<ListaMusica> listas;
@@ -14,6 +20,9 @@ public class Fonoteca {
     private RecomendadorPopularidad recomendadorPopularidad;
     private RecomendadorAfinidad recomendadorAfinidad;
 
+    /**
+     * Constructor de la clase Fonoteca
+     */
     public Fonoteca() {
         albums = new ArrayList<>();
         listas = new ArrayList<>();
@@ -23,6 +32,11 @@ public class Fonoteca {
         this.recomendadorPopularidad = new RecomendadorPopularidad(almacenValoraciones, 0.0);
     }
 
+    /**
+     * Constructor de la clase Fonoteca
+     * 
+     * @param corte corte para el recomendador de popularidad
+     */
     public Fonoteca(double corte) {
         albums = new ArrayList<>();
         listas = new ArrayList<>();
@@ -32,6 +46,11 @@ public class Fonoteca {
         this.recomendadorPopularidad = new RecomendadorPopularidad(almacenValoraciones, corte);
     }
 
+    /**
+     * Constructor de la clase Fonoteca
+     * 
+     * @param recomendadorAfinidad recomendador de afinidad
+     */
     public Fonoteca(RecomendadorAfinidad recomendadorAfinidad) {
         albums = new ArrayList<>();
         listas = new ArrayList<>();
@@ -43,6 +62,19 @@ public class Fonoteca {
         recomendadorAfinidad.setAlmacen(almacenValoraciones);
     }
 
+    /**
+     * Crea un album y lo añade a la fonoteca
+     * 
+     * @param titulo titulo del album
+     * @param artista artista del album
+     * @param estilo estilo del album
+     * @param canciones canciones del album
+     * 
+     * @return album creado
+     * 
+     * @throws ExcepcionCancionRepetida si la cancion esta repetida
+     * @throws ExcepcionFonoteca si el titulo del album es nulo o vacio
+     */
     public Album crearAlbum(String titulo, String artista, EstiloMusical estilo, Cancion... canciones) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
 
         try {
@@ -70,6 +102,18 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Crea un album y lo añade a la fonoteca
+     * 
+     * @param titulo titulo del album
+     * @param artista artista del album
+     * @param canciones canciones del album
+     * 
+     * @return album creado
+     * 
+     * @throws ExcepcionCancionRepetida si la cancion esta repetida
+     * @throws ExcepcionFonoteca si el titulo del album es nulo o vacio
+     */
     public Album crearAlbum(String titulo, String artista, Cancion... canciones) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
 
         try {
@@ -97,6 +141,16 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Crea una lista de musica y la añade a la fonoteca
+     * 
+     * @param titulo titulo de la lista
+     * 
+     * @return lista de musica creada
+     * 
+     * @throws ExcepcionCancionRepetida si la canción ya está en la lista
+     * @throws ExcepcionFonoteca si la canción está vacía
+     */
     public ListaMusica crearListaMusica(String titulo) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
         try {
             if (titulo == null || titulo.isEmpty()) {
@@ -110,6 +164,17 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Añade canciones a una lista de musica
+     * 
+     * @param lista lista de musica
+     * @param canciones canciones a añadir
+     * 
+     * @return lista de musica con las canciones añadidas
+     * 
+     * @throws ExcepcionCancionRepetida si la canción ya está en la lista
+     * @throws ExcepcionFonoteca si la canción está vacía
+     */
     public Fonoteca aniadirMusicaALista(ListaMusica lista, Cancion[] canciones) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
         try {
             if (canciones == null) {
@@ -135,6 +200,17 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Añade una cancion a una lista de musica
+     * 
+     * @param lista lista de musica
+     * @param cancion cancion a añadir
+     * 
+     * @return lista de musica con la cancion añadida
+     * 
+     * @throws ExcepcionCancionRepetida
+     * @throws ExcepcionFonoteca
+     */
     public Fonoteca aniadirMusicaALista(ListaMusica lista, Cancion cancion) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
         try {
             if (cancion == null) {
@@ -153,7 +229,18 @@ public class Fonoteca {
         }
     }
 
-    public Fonoteca aniadirMusicaALista(ListaMusica lista, Album album) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
+    /**
+     * Añade un album a una lista de musica
+     * 
+     * @param lista lista de musica
+     * @param album album a añadir
+     * 
+     * @return lista de musica con el album añadido
+     * 
+     * @throws ExcepcionCancionRepetida
+     * @throws ExcepcionFonoteca
+     */
+    public Fonoteca aniadirMusicaALista(ListaMusica lista, Album album) throws ExcepcionCancionRepetida, ExcepcionFonoteca {
         try {
             if (album == null) {
                 throw new ExcepcionFonoteca("El álbum está vacío.");
@@ -165,6 +252,17 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Añade una lista de musica a una lista de musica
+     * 
+     * @param lista lista de musica
+     * @param listaMusica lista de musica a añadir
+     * 
+     * @return lista de musica con la lista de musica añadida
+     * 
+     * @throws ExcepcionCancionRepetida
+     * @throws ExcepcionFonoteca
+     */
     public Fonoteca aniadirMusicaALista(ListaMusica lista, ListaMusica listaMusica) throws ExcepcionCancionRepetida, ExcepcionFonoteca{
         try {
             ArrayList<String> copiaTodasCanciones = new ArrayList<>(todasCanciones);
@@ -199,10 +297,20 @@ public class Fonoteca {
         }
     }
     
+    /**
+     * Obtiene el titulo de una cancion
+     * 
+     * @param cancion cancion
+     * 
+     * @return titulo de la cancion
+     */
     public String getTituloCancion(Cancion cancion) {
         return cancion.getTitulo();
     }
 
+    /**
+     * Muestra el contenido de la fonoteca
+     */
     public void mostrar() {
         for (Album album : albums) {
             System.out.println(album);
@@ -215,6 +323,14 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Registra un usuario en la fonoteca
+     * 
+     * @param nombre nombre del usuario
+     * @param id id del usuario
+     * 
+     * @return usuario registrado
+     */
     public Usuario registrarUsuario(String nombre, String id) {
         Usuario usuario = new Usuario(nombre, id);
         usuarios.add(usuario);
@@ -222,6 +338,15 @@ public class Fonoteca {
         return usuario;
     }
 
+    /**
+     * Valora un elemento de la fonoteca
+     * 
+     * @param usuario usuario que valora
+     * @param elemento elemento a valorar
+     * @param valoracion valoracion
+     * 
+     * @throws ExcepcionFonoteca si el usuario no está registrado
+     */
     public void valorar(IUsuario usuario, IRecomendable elemento, Valoracion valoracion) throws ExcepcionFonoteca{
         if (usuarios.contains(usuario)) {
             this.almacenValoraciones.addRecomendable(elemento);
@@ -233,25 +358,40 @@ public class Fonoteca {
         }
     }
 
+    /**
+     * Muestra las valoraciones de un usuario
+     * 
+     * @param usuario usuario
+     */
     public void mostrarValoraciones(IUsuario usuario) {
         this.almacenValoraciones.mostrarValoraciones(usuario);
     }
 
+    /**
+     * Muestra las recomendaciones de un usuario
+     * 
+     * @param usuario usuario
+     */
     public void mostrarRecomendaciones(IUsuario usuario) {
         Collection<Recomendacion> recomendaciones = this.recomendadorPopularidad.getRecomendaciones(usuario);
         Collection<Recomendacion> recomendaciones2 = this.recomendadorAfinidad.getRecomendaciones(usuario);
 
         System.out.println("RECOMENDACIONES PARA: " + usuario.getId());
 
-        /*for (Recomendacion recomendacion : recomendaciones) {
+        for (Recomendacion recomendacion : recomendaciones) {
             System.out.println(recomendacion);
-        }*/
+        }
 
         for (Recomendacion recomendacion : recomendaciones2) {
             System.out.println(recomendacion);
         }
     }
 
+    /**
+     * Obtiene el almacen de valoraciones
+     * 
+     * @return almacen de valoraciones
+     */
     public AlmacenValoraciones getAlmacenValoraciones() {
         return almacenValoraciones;
     }
