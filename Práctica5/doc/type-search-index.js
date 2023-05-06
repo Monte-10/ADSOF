@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"coffee","l":"CoffeeOrder"},{"p":"coffee","l":"CoffeeType"},{"p":"intents","l":"ContextIntent"},{"p":"intents","l":"ICreateObject"},{"p":"intents","l":"Intent"},{"p":"intents","l":"IntentHelper"},{"p":"intents","l":"Parameter"},{"p":"intents","l":"StructuredPhrase"}]
